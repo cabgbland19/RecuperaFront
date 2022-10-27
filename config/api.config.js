@@ -1,0 +1,1 @@
+export const BACKEND_API_DATA_GESTION = process.env.BACKEND_API_DATA_GESTION;
