@@ -16,6 +16,8 @@ export const LoginController = {
 
         if (data.username.rol === "ADMINISTRADOR") {
           $nuxt.$router.push({ name: "admin-users" });
+        } else if (data.username.rol === "ASESOR") {
+          $nuxt.$router.push({ name: "formRecover" });
         } else {
           $nuxt.$router.push({ name: "management" });
         }
@@ -29,6 +31,7 @@ export const LoginController = {
         });
       }
     },
+
     logout: async (token) => {
       await $nuxt.$api.post(`logout/?token=${token}`);
       $nuxt.$router.push({ name: "index" });

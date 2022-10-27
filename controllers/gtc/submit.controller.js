@@ -2,16 +2,17 @@ import { Sweetalert } from "~/assets/sweetalert";
 
 export const SubmitController = {
   post: {
-    gestion: async (payload, base) => {
-      const { data } = await $nuxt.$api.post(`bases/enviar/${base}/`, payload);
+    gestion: async (payload) => {
+      const { data } = await $nuxt.$api.post("/bases/recover/", payload);
 
       if (data) {
         Sweetalert.alert({
           title: "Excelente!",
-          text: "Registro Gestionado",
+          text: "Cliente registrado",
           timer: 1500,
         });
-        $nuxt.$router.push({ name: "management" });
+        return true;
+        // $nuxt.$router.push({ name: "management" });
       }
     },
   },

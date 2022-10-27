@@ -25,6 +25,7 @@
 
 <script>
 import { LoginController } from "~/controllers/login.controller";
+import Regex from "~/plugins/regex.js";
 
 export default {
   data() {
@@ -33,7 +34,7 @@ export default {
       rules: {
         user: [
           (v) => !!v || "El campo Usuario es requerido",
-          (v) => /^[a-zñ]+$/.test(v) || "Solo se acepta letras",
+          (v) => Regex.onlyNumber.test(v) || "Solo se acepta números",
         ],
         password: [(v) => !!v || "El campo Contraseña es requerido"],
       },
