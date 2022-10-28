@@ -3,6 +3,7 @@
     :label="label"
     rounded
     outlined
+    :readonly="readonly"
     :rules="rules"
     :items="items"
     v-model="localModel"
@@ -20,6 +21,10 @@ export default {
     rules: {
       type: Array,
       default: () => [],
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
     items: {
       type: Array,

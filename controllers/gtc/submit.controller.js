@@ -6,6 +6,8 @@ export const SubmitController = {
       const { data } = await $nuxt.$api.post("/bases/recover/", payload);
 
       if (data) {
+        $nuxt.$store.dispatch("recover.store/actResetState");
+
         Sweetalert.alert({
           title: "Excelente!",
           text: "Cliente registrado",

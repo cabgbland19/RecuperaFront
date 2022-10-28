@@ -129,9 +129,9 @@ export default {
     };
   },
   async fetch() {
-    const data1 = await this.getRecievedBase(this.getBaseByRol());
-    const data2 = await this.getSubmitBase(this.getBaseByRol());
-    this.items2 = data2.rows;
+    const data1 = await this.getRecievedBase();
+    // const data2 = await this.getSubmitBase(this.getBaseByRol());
+    this.items2 = [];
 
     this.items = data1.rows;
   },
@@ -147,21 +147,25 @@ export default {
     manage() {
       const register = this.itemsDataGestion[this.itemsDataGestion.length - 1];
       if (register) {
-        const { cuenta, periodo, notas_gtc } = register;
-        const dataGestion = { cuenta, periodo, notas_gtc };
-        for (const key in dataGestion) {
-          $nuxt.$store.dispatch("app/actUpdateValue", {
-            key: key,
-            value: dataGestion[key],
-          });
-        }
-        this.actUpdateValue({
-          key: `editedManage${this.getBaseByRol().toUpperCase()}`,
+        // const { cuenta, periodo, notas_gtc } = register;
+        // const dataGestion = { cuenta, periodo, notas_gtc };
+        // for (const key in dataGestion) {
+        //   $nuxt.$store.dispatch("app/actUpdateValue", {
+        //     key: key,
+        //     value: dataGestion[key],
+        //   });
+        // }
+        // this.actUpdateValue({
+        //   key: `editedManage${this.getBaseByRol().toUpperCase()}`,
+        //   value: register,
+        // });
+
+        // $nuxt.$router.push({ name: "managementForm" });
+        $nuxt.$store.dispatch("recover.store/actUpdateValue", {
+          key: "editedRecover",
           value: register,
         });
-
-        this.putRecievedBase(register, this.getBaseByRol());
-        $nuxt.$router.push({ name: "managementForm" });
+        this.putRecievedBase(register);
       } else {
         Sweetalert.alert({
           icon: "warning",
@@ -258,20 +262,22 @@ export default {
     ...mapState("localStorage", ["token", "username"]),
 
     itemsDataGestion() {
-      if (!this.username) return [];
+      // if (!this.username) return [];
 
       return this.items.filter((v) => {
+        console.log(v);
         let item;
 
         if (v.is_active === false) {
-          const campaign = this.username.campaign
-            .split(" ")
-            .join("_")
-            .toLowerCase();
+          // const campaign = this.username.campaign
+          //   .split(" ")
+          //   .join("_")
+          //   .toLowerCase();
 
-          if (v.level.toLowerCase() === campaign) {
-            item = v;
-          }
+          // if (v.level.toLowerCase() === campaign) {
+          //   item = v;
+          // }
+          item = v;
         }
 
         return item;
@@ -296,11 +302,6 @@ export default {
         //   }
         // }
         const name = this.username.name + " " + this.username.last_name;
-        // console.log(
-        //   "🚀 ~ file: management.vue ~ line 180 ~ returnthis.items.filter ~ name",
-        //   name.toLowerCase()
-        // );
-
         if (name.toLowerCase() === v.gestor.toLowerCase()) {
           item = v;
         }

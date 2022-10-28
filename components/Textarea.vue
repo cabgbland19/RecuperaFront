@@ -5,6 +5,7 @@
     outlined
     :rules="rules"
     v-model="localModel"
+    :readonly="readonly"
     maxlenght="400"
     counter
   />
@@ -16,6 +17,10 @@ export default {
     label: {
       type: String,
       default: "label",
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
     rules: {
       type: Array,

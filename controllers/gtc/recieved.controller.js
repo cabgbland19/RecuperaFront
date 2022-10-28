@@ -17,8 +17,8 @@ export const RecievedController = {
   //     },
   //   },
   get: {
-    recievedbase: async (base) => {
-      const { data } = await $nuxt.$api.get(`bases/recibida/${base}`);
+    recievedbase: async () => {
+      const { data } = await $nuxt.$api.get(`bases/recover/`);
       return data;
     },
     submitBase: async (base) => {
@@ -27,17 +27,24 @@ export const RecievedController = {
     },
   },
   put: {
-    recievedbase: async (payload, base) => {
+    recievedbase: async (payload) => {
       delete payload.is_active;
       payload.is_active = true;
 
-      $nuxt.$store.dispatch("manageGTC/actUpdateKey", {
-        object: "editedManageGTC",
-        key: "fecha_solcionado",
-        value: new Date().toISOString().split("T")[0],
-      });
+      // $nuxt.$store.dispatch("manageGTC/actUpdateKey", {
+      //   object: "editedManageGTC",
+      //   key: "fecha_solcionado",
+      //   value: new Date().toISOString().split("T")[0],
+      // });
 
-      await $nuxt.$api.put(`bases/recibida/${base}/${payload.id}/`, payload);
+      const { data } = await $nuxt.$api.put(
+        `bases/recover/${payload.id}/`,
+        payload
+      );
+
+      if (data) {
+        $nuxt.$router.push({ name: "formRecover" });
+      }
     },
   },
 };

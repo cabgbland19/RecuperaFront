@@ -16,7 +16,7 @@ export default function ({ $api, redirect, store, route }) {
       }
     }
     if (nameRoute === "management" || nameRoute === "managementForm") {
-      if (rol.split(" ")[0] !== "BACKOFFICE") {
+      if (rol.split(" ")[0] !== "GESTOR") {
         redirect({ name: "index" });
       }
     }

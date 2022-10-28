@@ -27,15 +27,17 @@
             <!-- Nombre -->
             <v-col cols="12">
               <Input
-                :model.sync="payload.name"
+                :model.sync="recoverItemName"
                 :rules="rules.name"
                 label="Nombre"
+                :readonly="recoverItem.id && true"
               />
             </v-col>
             <!-- Documento -->
             <v-col cols="12">
               <Input
-                :model.sync="payload.document"
+                :model.sync="recoverItemDocument"
+                :readonly="recoverItem.id && true"
                 :rules="rules.document"
                 label="Documento"
                 maxlength="15"
@@ -44,7 +46,8 @@
             <!-- Telefono titular -->
             <v-col cols="12">
               <Input
-                :model.sync="payload.numberOne"
+                :model.sync="recoverItemNumberOne"
+                :readonly="recoverItem.id && true"
                 :rules="rules.phoneHeadline"
                 label="Telefono del titular"
                 maxlength="10"
@@ -53,7 +56,8 @@
             <!-- Telefono contacto -->
             <v-col cols="12">
               <Input
-                :model.sync="payload.numberTwo"
+                :model.sync="recoverItemNumberTwo"
+                :readonly="recoverItem.id && true"
                 :rules="rules.phoneContact"
                 label="Telefono de contacto"
                 maxlength="10"
@@ -62,16 +66,27 @@
             <!-- Servicio -->
             <v-col cols="12">
               <Select
-                :model.sync="payload.line"
+                :model.sync="recoverItemLine"
+                :readonly="recoverItem.id && true"
                 :rules="rules.services"
                 label="Servicios"
                 :items="itemsServices"
               />
             </v-col>
+            <!-- Estado de la gestion -->
+            <v-col cols="12" v-if="recoverItem.id">
+              <Select
+                :model.sync="recoverItemIsActive"
+                :rules="rules.isActive"
+                label="Estado de la gestion"
+                :items="itemsIsActive"
+              />
+            </v-col>
             <!-- Observacion -->
             <v-col cols="12">
               <Textarea
-                :model.sync="payload.observation"
+                :model.sync="recoverItemObservation"
+                :readonly="recoverItem.id && true"
                 :rules="rules.observation"
                 label="Observaciòn"
               />
@@ -90,7 +105,10 @@
 import { mapState } from "vuex";
 import Regex from "~/plugins/regex.js";
 import { SubmitController } from "~/controllers/gtc/submit.controller";
+import { EndBaseController } from "~/controllers/endBase.controller";
 import { LoginController } from "~/controllers/login.controller";
+import { VModelRecoverInterface } from "~/interfaces/recover.interface";
+import { propertiesGenerator } from "~/plugins/helpers";
 
 export default {
   layout: "empty",
@@ -107,6 +125,16 @@ export default {
         {
           text: "HOGAR",
           value: "HOGAR",
+        },
+      ],
+      itemsIsActive: [
+        {
+          text: "RETENIDO",
+          value: true,
+        },
+        {
+          text: "NO RETENIDO",
+          value: false,
         },
       ],
       payload: {},
@@ -129,6 +157,7 @@ export default {
           (v) => Regex.onlyNumber.test(v) || "Solo se aceptan nùmeros",
         ],
         services: [(v) => !!v || "El servicio  es requerido"],
+        itemsIsActive: [(v) => !!v || "El estado es requerido"],
         observation: [
           (v) => !!v || "La observaciòn es requerida",
           (v) =>
@@ -142,17 +171,29 @@ export default {
   methods: {
     postGestion: SubmitController.post.gestion,
     postLogout: LoginController.post.logout,
+    postEndBase: EndBaseController.post.endBase,
 
     submitForm() {
-      const date = new Date(new Date().setSeconds(-36000));
-      const dateRequest = date.toISOString().split("T").join(" ").slice(0, -2);
+      if (!this.recoverItem.id) {
+        const date = new Date(new Date().setSeconds(-36000));
+        const dateRequest = date
+          .toISOString()
+          .split("T")
+          .join(" ")
+          .slice(0, -2);
 
-      this.payload.gestor = this.username.name;
-      this.payload.is_active = false;
-      this.payload.date = dateRequest;
+        this.recoverItemGestor = this.username.name;
+        this.recoverItemIsActive = false;
+        this.recoverItemIsDate = dateRequest;
 
-      if (this.postGestion(this.payload)) {
-        this.$refs.form.reset();
+        if (this.postGestion(this.recoverItem)) {
+          this.$refs.form.reset();
+        }
+      } else {
+        this.recoverItemNewGestor = this.username.name;
+        if (this.postEndBase(this.recoverItem)) {
+          this.$refs.form.reset();
+        }
       }
     },
 
@@ -162,6 +203,11 @@ export default {
   },
   computed: {
     ...mapState("localStorage", ["username", "token"]),
+
+    ...propertiesGenerator([...VModelRecoverInterface], {
+      path: "recover.store",
+      mut: "recover.store/setProperty",
+    }),
   },
 };
 </script>
