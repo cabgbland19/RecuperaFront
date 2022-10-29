@@ -3,15 +3,11 @@ import { Sweetalert } from "~/assets/sweetalert";
 export const UsersController = {
   post: {
     user: async (payload) => {
-      const { name, last_name } = payload;
-      const firstNameLetter = name.split(" ")[0].slice(0, 1);
-      const firstLastName = last_name.split(" ")[0];
-      payload.username =
-        firstNameLetter.toLowerCase() + firstLastName.toLowerCase();
+      payload.username = payload.document;
+      payload.password = payload.document;
       payload.cost_center =
         $nuxt.$store.state.localStorage.username.cost_center;
-
-      // payload.is_active = true;
+      payload.is_active = true;
 
       try {
         const { data } = await $nuxt.$api.post(`users/user/`, payload);
@@ -30,16 +26,12 @@ export const UsersController = {
           });
         }
       } catch (error) {
-        let errorEmail1;
-        if (error.response.data.error.email) {
-          errorEmail1 = error.response.data.error.email[0].toUpperCase();
-        } else {
-          errorEmail1 = error.response.data.error.username[0].toUpperCase();
-        }
+        let errorResponse;
+        errorResponse = error.response.data.error.username[0].toUpperCase();
 
-        const firstLetterMessage = errorEmail1.substr(0, 1);
-        const restOfMessage = errorEmail1
-          .substr(1, errorEmail1.length)
+        const firstLetterMessage = errorResponse.substr(0, 1);
+        const restOfMessage = errorResponse
+          .substr(1, errorResponse.length)
           .toLowerCase();
 
         Sweetalert.alert({

@@ -99,7 +99,7 @@
     <!-- <v-col cols="8">
       <Form />
     </v-col> -->
-    <v-btn
+    <!-- <v-btn
       color="primary"
       dense
       rounded
@@ -107,7 +107,7 @@
       style="position: absolute; top: 900px; right: 40px"
     >
       <v-icon left> mdi-coffee-to-go </v-icon>Salir a Break
-    </v-btn>
+    </v-btn> -->
   </v-row>
 </template>
 <script>

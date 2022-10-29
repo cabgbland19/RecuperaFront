@@ -28,7 +28,7 @@
             <v-card
               min-height="200px"
               rounded="xl"
-              style="box-shadow: 0px 2px 2px 0px rgb(17 120 100)"
+              style="box-shadow: 0px 2px 2px 0px black"
             >
               <v-row class="pa-5">
                 <v-col>
@@ -63,11 +63,16 @@
                   <span class="primary--text">Nombre</span> <br />
                   <span v-text="user.name" />
                 </v-col>
-                <!-- Apellido -->
+                <!--Documento -->
                 <v-col cols="12" class="text-center">
+                  <span class="primary--text">Documento</span> <br />
+                  <span v-text="user.username" />
+                </v-col>
+                <!-- Apellido -->
+                <!-- <v-col cols="12" class="text-center">
                   <span class="primary--text">Apellido</span> <br />
                   <span v-text="user.last_name" />
-                </v-col>
+                </v-col> -->
                 <!-- Campaña -->
                 <v-col cols="12" class="text-center">
                   <span class="primary--text">Campaña</span> <br />
@@ -78,15 +83,11 @@
                   </v-chip>
                 </v-col>
                 <!-- Correo -->
-                <v-col cols="12" class="text-center">
+                <!-- <v-col cols="12" class="text-center">
                   <span class="primary--text">Correo</span> <br />
                   <span v-text="user.email" />
-                </v-col>
-                <!-- Nombre del usuario -->
-                <v-col cols="12" class="text-center">
-                  <span class="primary--text">Nombre del usuario</span> <br />
-                  <span v-text="user.username" />
-                </v-col>
+                </v-col> -->
+
                 <!-- Rol -->
                 <v-col cols="12" class="text-center">
                   <span class="primary--text">Rol</span> <br />

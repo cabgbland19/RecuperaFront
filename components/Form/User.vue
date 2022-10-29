@@ -2,15 +2,16 @@
   <v-form ref="form" @submit.prevent="sendform" v-model="isFormValid">
     <v-row dense>
       <!-- Nombre -->
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <Input label="Nombres" :rules="rules.name" :model.sync="userItemName" />
-      </v-col>
+      </v-col> -->
       <!-- Apellidos -->
       <v-col cols="12"
         ><Input
-          label="Apellidos"
-          :rules="rules.lastName"
-          :model.sync="userItemLastName"
+          label="Documento"
+          :rules="rules.document"
+          :model.sync="userItemDocument"
+          maxlength="15"
       /></v-col>
       <!-- Campaña -->
       <!-- <v-col cols="12"
@@ -21,13 +22,13 @@
           :model.sync="userItemCostCenter"
       /></v-col> -->
       <!-- Correo -->
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <Input
           label="Correo"
           :rules="rules.email"
           :model.sync="userItemEmail"
         />
-      </v-col>
+      </v-col> -->
       <!-- Rol -->
       <v-col cols="12"
         ><Select
@@ -37,7 +38,7 @@
           :model.sync="userItemRol"
       /></v-col>
       <!-- Contraseña -->
-      <v-col cols="12" class="text-center">
+      <!-- <v-col cols="12" class="text-center">
         <Input
           v-if="!userItem.id || isNewPassword"
           label="Contraseña"
@@ -48,7 +49,7 @@
         <Button v-else class="mb-4" :action="() => (isNewPassword = true)">
           <v-icon left>mdi-key</v-icon>Cambiar contraseña
         </Button>
-      </v-col>
+      </v-col> -->
       <!-- Activar y desactivar -->
       <v-col cols="12" v-if="userItem.id"
         ><Select
@@ -88,9 +89,9 @@ export default {
           (v) => !!v || "El nombre es requerido",
           (v) => Regex.onlyLetters.test(v) || "Solo se aceptan letras",
         ],
-        lastName: [
-          (v) => !!v || "El apellido es requerido",
-          (v) => Regex.onlyLetters.test(v) || "Solo se aceptan letras",
+        document: [
+          (v) => !!v || "El documento es requerido",
+          (v) => Regex.onlyNumber.test(v) || "Solo se aceptan numeros",
         ],
         campaign: [(v) => !!v || "La campaña es requerida"],
         email: [
@@ -107,11 +108,11 @@ export default {
           value: 1,
         },
         {
-          text: "BACKOFFICE GTC",
+          text: "ASESOR",
           value: 2,
         },
         {
-          text: "BACKOFFICE GESUCS",
+          text: "GESTOR",
           value: 3,
         },
       ],
