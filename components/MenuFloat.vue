@@ -1,7 +1,7 @@
 <template>
   <v-menu bottom left rounded="xl">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn icon v-bind="attrs" v-on="on">
+      <v-btn icon v-bind="attrs" v-on="on" color="primary">
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </template>

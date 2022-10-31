@@ -25,80 +25,85 @@
             class="mb-5"
             v-if="username && username.cost_center === user.cost_center"
           >
-            <v-card
-              min-height="200px"
-              rounded="xl"
-              style="box-shadow: 0px 2px 2px 0px black"
-            >
-              <v-row class="pa-5">
-                <v-col>
-                  <v-chip
-                    class="ma-2"
-                    :color="user.is_active ? 'success' : 'error'"
-                    outlined
-                  >
-                    <v-icon left> mdi-brightness-1 </v-icon>
-                    {{ user.is_active ? "Activo" : "Inactivo" }}
-                  </v-chip>
-                </v-col>
-                <!-- Menu flotante -->
-                <v-col class="d-flex justify-end mb-n10">
-                  <MenuFloat>
-                    <v-list>
-                      <v-list-item>
-                        <!-- <Button
+            <v-hover v-slot="{ hover }">
+              <v-card
+                min-height="200px"
+                rounded="xl"
+                :elevation="hover ? 4 : 2"
+              >
+                <v-row class="pa-7">
+                  <v-col>
+                    <v-chip
+                      class="ma-2"
+                      :color="user.is_active ? 'success' : 'error'"
+                      outlined
+                    >
+                      <v-icon left> mdi-brightness-1 </v-icon>
+                      {{ user.is_active ? "Activo" : "Inactivo" }}
+                    </v-chip>
+                  </v-col>
+                  <!-- Menu flotante -->
+                  <v-col class="d-flex justify-end mb-n10">
+                    <MenuFloat>
+                      <v-list>
+                        <v-list-item>
+                          <!-- <Button
                           :isIcon="true"
                           color="#F39C12"
                           iconText="mdi-pencil"
                           :action="edit(user)"
                         /> -->
 
-                        <v-btn @click="edit(user)">Editar </v-btn>
-                      </v-list-item>
-                    </v-list>
-                  </MenuFloat>
-                </v-col>
-                <!-- Nombre -->
-                <v-col cols="12" class="text-center">
-                  <span class="primary--text">Nombre</span> <br />
-                  <span v-text="user.name" />
-                </v-col>
-                <!--Documento -->
-                <v-col cols="12" class="text-center">
-                  <span class="primary--text">Documento</span> <br />
-                  <span v-text="user.username" />
-                </v-col>
-                <!-- Apellido -->
-                <!-- <v-col cols="12" class="text-center">
+                          <v-btn icon @click="edit(user)" color="primary">
+                            <v-icon color="primary"> mdi-pencil </v-icon>
+                          </v-btn>
+                        </v-list-item>
+                      </v-list>
+                    </MenuFloat>
+                  </v-col>
+                  <!-- Nombre -->
+                  <v-col cols="12" class="text-center">
+                    <span class="primary--text">Nombre</span> <br />
+                    <span v-text="user.name" />
+                  </v-col>
+                  <!--Documento -->
+                  <v-col cols="12" class="text-center">
+                    <span class="primary--text mb-10">Documento</span> <br />
+                    <span v-text="user.username" />
+                  </v-col>
+                  <!-- Apellido -->
+                  <!-- <v-col cols="12" class="text-center">
                   <span class="primary--text">Apellido</span> <br />
                   <span v-text="user.last_name" />
                 </v-col> -->
-                <!-- Campaña -->
-                <v-col cols="12" class="text-center">
-                  <span class="primary--text">Campaña</span> <br />
-                  <!-- <span>Segundo Anillo</span> -->
-                  <v-chip class="ma-2" color="primary">
-                    <v-icon left class="mb-1"> mdi-hoop-house </v-icon>
-                    <span v-text="user.campaign" />
-                  </v-chip>
-                </v-col>
-                <!-- Correo -->
-                <!-- <v-col cols="12" class="text-center">
+                  <!-- Campaña -->
+                  <v-col cols="12" class="text-center">
+                    <span class="primary--text">Campaña</span> <br />
+                    <!-- <span>Segundo Anillo</span> -->
+                    <v-chip color="white">
+                      <v-icon left color="primary"> mdi-hoop-house </v-icon>
+                      <span v-text="user.campaign" />
+                    </v-chip>
+                  </v-col>
+                  <!-- Correo -->
+                  <!-- <v-col cols="12" class="text-center">
                   <span class="primary--text">Correo</span> <br />
                   <span v-text="user.email" />
                 </v-col> -->
 
-                <!-- Rol -->
-                <v-col cols="12" class="text-center">
-                  <span class="primary--text">Rol</span> <br />
-                  <!-- <span>Admin</span> -->
-                  <v-chip class="ma-2" color="primary">
-                    <v-icon left> mdi-shield-account </v-icon>
-                    <span v-text="user.rol" />
-                  </v-chip>
-                </v-col>
-              </v-row> </v-card
-          ></v-col>
+                  <!-- Rol -->
+                  <v-col cols="12" class="text-center">
+                    <span class="primary--text">Rol</span> <br />
+                    <!-- <span>Admin</span> -->
+                    <v-chip color="white">
+                      <v-icon left color="primary"> mdi-shield-account </v-icon>
+                      <span v-text="user.rol" />
+                    </v-chip>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-hover>
+          </v-col>
         </template>
       </v-row>
     </v-col>
