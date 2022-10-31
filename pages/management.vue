@@ -323,7 +323,7 @@ export default {
 
 <style>
 .v-sheet.v-card:not(.v-sheet--outlined) {
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 5px 3px 0px rgb(17 120 100),
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 7px 15px 0px rgb(176 33 36),
     0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 .v-badge__badge {
