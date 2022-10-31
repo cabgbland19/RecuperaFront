@@ -3,6 +3,7 @@
     v-model="localModel"
     rounded
     color="none"
+    :prepend-inner-icon="prependInnerIcon"
     :autocomplete="autocomplete"
     outlined
     :maxlength="maxlength"
@@ -25,6 +26,10 @@ export default {
     autocomplete: {
       type: String,
       default: "on",
+    },
+    prependInnerIcon: {
+      type: String,
+      default: null,
     },
     maxlength: {
       type: String,

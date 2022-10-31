@@ -16,9 +16,20 @@
       </v-btn>
     </v-col>
     <!-- users -->
+    <v-col>
+      <v-toolbar class="pt-3" solo flat>
+        <Input
+          :model.sync="search"
+          class="mx-auto"
+          style="max-width: 400px !important"
+          label="Buscar por documento"
+          prependInnerIcon="mdi-magnify"
+        />
+      </v-toolbar>
+    </v-col>
     <v-col cols="12">
       <v-row class="mx-5 mt-3">
-        <template v-for="user in itemsUsers">
+        <template v-for="user in setUsers">
           <v-col
             cols="3"
             :key="user.id"
@@ -135,6 +146,7 @@ export default {
     return {
       viewTitle: "Usuarios",
       itemsUsers: [],
+      search: "",
     };
   },
 
@@ -151,6 +163,13 @@ export default {
       path: "user.store",
       mut: "user.store/setProperty",
     }),
+
+    setUsers() {
+      return this.itemsUsers.filter((item) => {
+        const document = String(item.document);
+        return document.includes(this.search);
+      });
+    },
 
     // filterItemsUsers() {
     //   const { campaign } = this.username;
