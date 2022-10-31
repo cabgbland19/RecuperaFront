@@ -29,7 +29,7 @@
               <v-card
                 min-height="200px"
                 rounded="xl"
-                :elevation="hover ? 4 : 2"
+                :elevation="hover ? 5 : 2"
               >
                 <v-row class="pa-7">
                   <v-col>
