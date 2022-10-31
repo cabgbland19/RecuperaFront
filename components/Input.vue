@@ -2,6 +2,7 @@
   <v-text-field
     v-model="localModel"
     rounded
+    color="none"
     outlined
     :maxlength="maxlength"
     :counter="maxlength ? true : false"

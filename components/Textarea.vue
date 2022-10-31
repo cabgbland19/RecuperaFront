@@ -2,6 +2,7 @@
   <v-textarea
     :label="label"
     rounded
+    color="none"
     outlined
     :rules="rules"
     v-model="localModel"

@@ -2,6 +2,7 @@
   <v-select
     :label="label"
     rounded
+    color="none"
     outlined
     :readonly="readonly"
     :rules="rules"
