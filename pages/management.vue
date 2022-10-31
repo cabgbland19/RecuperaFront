@@ -17,7 +17,7 @@
     <!-- <v-col class="mb-n16 ma-8"> -->
     <!-- :content="messages"
         :value="messages" -->
-    <template v-if="getBaseByRol() === 'gtc'">
+    <!-- <template v-if="getBaseByRol() === 'gtc'">
       <v-badge
         color="green"
         overlap
@@ -35,7 +35,7 @@
           <v-icon x-large> mdi-calendar </v-icon>
         </v-btn>
       </v-badge>
-    </template>
+    </template> -->
 
     <!-- </v-col> -->
     <v-col cols="2" style="border-right: 1px solid #117864" v-if="isSideBar">
@@ -196,10 +196,10 @@ export default {
           value: dataGestion[key],
         });
       }
-      $nuxt.$store.dispatch("manageGTC/actUpdateValue", {
-        key: `editedManage${this.getBaseByRol().toUpperCase()}`,
-        value: item,
-      });
+      // $nuxt.$store.dispatch("manageGTC/actUpdateValue", {
+      //   key: `editedManage${this.getBaseByRol().toUpperCase()}`,
+      //   value: item,
+      // });
       $nuxt.$store.dispatch("app/actUpdateValue", {
         key: "isDialog",
         value: true,
@@ -231,32 +231,32 @@ export default {
     logout() {
       this.postLogout(this.token);
     },
-    getBaseByRol() {
-      const { rol, cost_center } = this.username;
-      let base;
+    // getBaseByRol() {
+    //   const { rol, cost_center } = this.username;
+    //   let base;
 
-      if (rol === "BACKOFFICE GESUCS") {
-        if (cost_center === 160) {
-          base = "gesucs";
-        }
+    //   if (rol === "BACKOFFICE GESUCS") {
+    //     if (cost_center === 160) {
+    //       base = "gesucs";
+    //     }
 
-        if (cost_center === 162) {
-          base = "gesucs";
-        }
-      }
+    //     if (cost_center === 162) {
+    //       base = "gesucs";
+    //     }
+    //   }
 
-      if (rol === "BACKOFFICE GTC") {
-        if (cost_center === 160) {
-          base = "gtc";
-        }
+    //   if (rol === "BACKOFFICE GTC") {
+    //     if (cost_center === 160) {
+    //       base = "gtc";
+    //     }
 
-        if (cost_center === 162) {
-          base = "gtc";
-        }
-      }
+    //     if (cost_center === 162) {
+    //       base = "gtc";
+    //     }
+    //   }
 
-      return base;
-    },
+    //   return base;
+    // },
   },
   computed: {
     ...mapState("localStorage", ["token", "username"]),
