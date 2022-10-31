@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <!-- header -->
-    <v-col cols="12" class="primary d-flex justify-center">
+    <v-col cols="12" class="d-flex justify-center" style="background: #464646">
       <h1 v-text="viewTitle" class="white--text mt-3" />
       <v-btn
         class="ma-2 mt-4 white"

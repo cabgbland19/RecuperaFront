@@ -3,12 +3,18 @@
     <v-main>
       <!-- <v-container fill-height fluid class="primary"> -->
       <v-row class="fill-height ma-0">
-        <v-col class="primary d-flex justify-center align-center">
-          <v-img src="/img/nakamoto.svg"></v-img>
+        <v-col class="d-flex justify-center align-center mr-n16">
+          <v-img
+            src="/img/interview.svg"
+            max-height="550"
+            max-width="550"
+          ></v-img>
         </v-col>
-        <v-col class="d-flex flex-column justify-center align-center" cols="5">
-          <h1 class="primary--text display-3 mb-15">GBO</h1>
-          <Nuxt />
+        <v-col class="d-flex flex-column justify-center align-center">
+          <div class="elevation-2 pa-4 rounded-xl pa-8 text-center py-16">
+            <h1 class="primary--text display-1 mb-15">Recover</h1>
+            <Nuxt />
+          </div>
         </v-col>
       </v-row>
       <!-- </v-container> -->

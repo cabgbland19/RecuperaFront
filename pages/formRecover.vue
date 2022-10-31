@@ -1,6 +1,6 @@
 <template>
   <v-container fill-height class="background-recover" fluid>
-    <v-app-bar app class="primary">
+    <v-app-bar app style="background: #464646">
       <h1 v-text="viewTitle" class="white--text mt-1" />
       <v-btn
         class="ma-2 mt-2 white"

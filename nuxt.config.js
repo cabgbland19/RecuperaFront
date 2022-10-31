@@ -10,7 +10,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     // titleTemplate: "%s - frontend",
-    title: "Gestion Backoffice",
+    title: "Recover",
     htmlAttrs: {
       lang: "en",
     },
@@ -20,7 +20,7 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/GBO.ico" }],
+    // link: [{ rel: "icon", type: "image/x-icon", href: "/GBO.ico" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
