@@ -15,10 +15,10 @@
   >
     <v-row>
       <v-col class="d-flex flex-column justify-center align-center">
-        <FulfillingBouncingCircleSpinner
+        <SwappingSquaresSpinner
           :animation-duration="1000"
           :size="100"
-          :color="'#117864'"
+          :color="'#db282b'"
         />
         <span class="text-h5 mt-8"> Cargando... </span>
       </v-col>
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import { FulfillingBouncingCircleSpinner } from "epic-spinners";
+import { SwappingSquaresSpinner } from "epic-spinners";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    FulfillingBouncingCircleSpinner,
+    SwappingSquaresSpinner,
   },
   computed: {
     ...mapState("app", ["isLoading"]),
