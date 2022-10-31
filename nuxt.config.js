@@ -45,7 +45,10 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     //https://www.npmjs.com/package/nuxt-vuex-localstorage
-    "nuxt-vuex-localstorage",
+   ["nuxt-vuex-localstorage",{
+      sessionStorage: ['recover.store']
+    }
+   ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
