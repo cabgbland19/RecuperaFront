@@ -14,6 +14,7 @@
           :rules="rules.password"
           type="password"
           :model.sync="user.password"
+          autocomplete="none"
         />
       </v-col>
       <v-col cols="7" class="d-flex justify-center">

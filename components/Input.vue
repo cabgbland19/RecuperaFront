@@ -3,6 +3,7 @@
     v-model="localModel"
     rounded
     color="none"
+    :autocomplete="autocomplete"
     outlined
     :maxlength="maxlength"
     :counter="maxlength ? true : false"
@@ -20,6 +21,10 @@ export default {
     label: {
       type: String,
       default: "label",
+    },
+    autocomplete: {
+      type: String,
+      default: "on",
     },
     maxlength: {
       type: String,
