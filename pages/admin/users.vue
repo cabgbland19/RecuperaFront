@@ -36,7 +36,7 @@
             class="mb-5"
             v-if="username && username.cost_center === user.cost_center"
           >
-            <v-hover v-slot="{ hover }">
+            <v-hover v-slot="{ hover }" style="transition: all 0.5s ease">
               <v-card
                 min-height="200px"
                 rounded="xl"

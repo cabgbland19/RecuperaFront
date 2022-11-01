@@ -17,7 +17,7 @@
     <v-row justify="center">
       <v-col cols="6">
         <!-- Formulario -->
-        <v-hover v-slot="{ hover }">
+        <v-hover v-slot="{ hover }" style="transition: all 0.5s ease">
           <v-form
             ref="form"
             class="white pa-8 rounded-xl"
