@@ -1,17 +1,19 @@
 <template>
   <v-container fill-height class="background-recover" fluid>
     <v-app-bar app style="background: #464646">
-      <h1 v-text="viewTitle" class="white--text mt-1" />
+      <DialogProfile :data="username" />
+      <!-- Titulo -->
+      <h1 v-text="viewTitle" class="white--text mt-1 mx-auto" />
+      <!-- Cerrar sesion -->
       <v-btn
         class="ma-2 mt-2 white"
-        color="primary"
-        outlined
+        color="white"
         rounded
         @click="logout"
         style="position: absolute; right: 0"
       >
+        <v-icon color="primary" left> mdi-exit-run </v-icon>
         Cerrar sesion
-        <v-icon right> mdi-exit-run </v-icon>
       </v-btn>
     </v-app-bar>
     <v-row justify="center">

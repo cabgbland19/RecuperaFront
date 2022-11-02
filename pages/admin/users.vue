@@ -2,6 +2,9 @@
   <v-row>
     <!-- header -->
     <v-col cols="12" class="d-flex justify-center" style="background: #464646">
+      <div class="mt-2">
+        <DialogProfile :data="username" />
+      </div>
       <h1 v-text="viewTitle" class="white--text mt-3" />
       <v-btn
         class="ma-2 mt-4 white"
