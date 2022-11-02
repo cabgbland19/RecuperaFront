@@ -1,3 +1,6 @@
+import { Sweetalert } from "~/assets/sweetalert";
+
+
 export const RecievedController = {
   //   post: {
   //     login: async (payload) => {
@@ -36,17 +39,29 @@ export const RecievedController = {
       //   key: "fecha_solcionado",
       //   value: new Date().toISOString().split("T")[0],
       // });
+try {
+  
+  const { data } = await $nuxt.$api.put(
+    `bases/recover/${payload.id}/`,
+    payload
+  );
 
-      const { data } = await $nuxt.$api.put(
-        `bases/recover/${payload.id}/`,
-        payload
-      );
+  if (data) {
+    // $nuxt.refresh()
+    $nuxt.$router.push({ name: "formRecover" });
+    return data
+  }
+} catch (error) {
+    $nuxt.refresh()
 
-      if (data) {
-        // $nuxt.refresh()
-        $nuxt.$router.push({ name: "formRecover" });
-        return data
-      }
+    Sweetalert.alert({
+      icon: "warning",
+      title: "Ups!",
+      text: "No hay gestiones disponibles",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+}
     },
   },
 };
