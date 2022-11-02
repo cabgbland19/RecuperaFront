@@ -144,7 +144,7 @@ export default {
     postLogout: LoginController.post.logout,
     postBreak: UsersBreakController.post.user,
 
-    manage() {
+    async manage() {
       const register = this.itemsDataGestion[this.itemsDataGestion.length - 1];
       if (register) {
         // const { cuenta, periodo, notas_gtc } = register;
@@ -161,11 +161,11 @@ export default {
         // });
 
         // $nuxt.$router.push({ name: "managementForm" });
+        const { data } = await this.putRecievedBase(register);
         $nuxt.$store.dispatch("recover.store/actUpdateValue", {
           key: "editedRecover",
-          value: register,
+          value: data,
         });
-        this.putRecievedBase(register);
       } else {
         Sweetalert.alert({
           icon: "warning",

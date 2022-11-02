@@ -43,7 +43,9 @@ export const RecievedController = {
       );
 
       if (data) {
+        // $nuxt.refresh()
         $nuxt.$router.push({ name: "formRecover" });
+        return data
       }
     },
   },
