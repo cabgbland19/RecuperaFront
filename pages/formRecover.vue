@@ -71,13 +71,13 @@
                   maxlength="10"
                 />
               </v-col>
-              <!-- Servicio -->
+              <!-- Segmentos -->
               <v-col cols="12">
                 <Select
                   :model.sync="recoverItemLine"
                   :readonly="recoverItem.id && true"
                   :rules="rules.services"
-                  label="Servicios"
+                  label="Segmento"
                   :items="itemsServices"
                 />
               </v-col>
