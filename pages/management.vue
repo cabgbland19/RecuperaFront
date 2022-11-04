@@ -265,27 +265,15 @@ export default {
     ...mapState("localStorage", ["token", "username"]),
 
     itemsDataGestion() {
-      // if (!this.username) return [];
-
+      if (!this.username) return [];
       return this.items.filter((v) => {
-        console.log(v);
         let item;
-
-        if (v.is_active === false) {
-          // const campaign = this.username.campaign
-          //   .split(" ")
-          //   .join("_")
-          //   .toLowerCase();
-
-          // if (v.level.toLowerCase() === campaign) {
-          //   item = v;
-          // }
-          item = v;
-        }
-
+        if (v.is_active) return;
+        const name = this.username.name.toLowerCase();
+        if (v.gestor.toLowerCase() !== name) return;
+        item = v;
         return item;
       });
-      // return this.items;
     },
 
     item2DataEarring() {
