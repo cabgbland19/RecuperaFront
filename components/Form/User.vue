@@ -38,7 +38,7 @@
           :model.sync="userItemRol"
       /></v-col>
       <!-- Contraseña -->
-      <!-- <v-col cols="12" class="text-center">
+      <v-col cols="12" class="text-center" v-if="userItem.id">
         <Input
           v-if="!userItem.id || isNewPassword"
           label="Contraseña"
@@ -49,7 +49,7 @@
         <Button v-else class="mb-4" :action="() => (isNewPassword = true)">
           <v-icon left>mdi-key</v-icon>Cambiar contraseña
         </Button>
-      </v-col> -->
+      </v-col>
       <!-- Activar y desactivar -->
       <v-col cols="12" v-if="userItem.id"
         ><Select

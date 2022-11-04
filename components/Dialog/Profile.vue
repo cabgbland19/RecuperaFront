@@ -1,10 +1,5 @@
 <template>
-  <v-menu
-    v-model="menu"
-    :close-on-content-click="false"
-    :max-width="250"
-    rounded="xl"
-  >
+  <v-menu :close-on-content-click="false" :max-width="250" rounded="xl">
     <!-- Boton que abre el menu -->
     <template v-slot:activator="{ on, attrs }">
       <v-btn
