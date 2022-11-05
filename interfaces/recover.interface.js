@@ -75,4 +75,10 @@ export const VModelRecoverInterface = [
     twoKey: "newGestor",
     defaultValue: RecoverInterface.newGestor,
   },
+  {
+    property: "recoverItemReason",
+    oneKey: "editedRecover",
+    twoKey: "reason",
+    defaultValue: RecoverInterface.reason,
+  },
 ];

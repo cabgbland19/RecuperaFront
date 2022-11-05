@@ -27,7 +27,7 @@
             v-model="isformValid"
             @submit.prevent="submitForm"
           >
-            <v-row>
+            <v-row v-if="!recoverItem.id">
               <!-- Nombre -->
               <v-col cols="12" class="text-center">
                 <h1 class="font-weight-light primary--text">Cliente</h1>
@@ -72,7 +72,7 @@
                 />
               </v-col>
               <!-- Segmentos -->
-              <v-col cols="12">
+              <v-col cols="6">
                 <Select
                   :model.sync="recoverItemLine"
                   :readonly="recoverItem.id && true"
@@ -81,15 +81,34 @@
                   :items="itemsServices"
                 />
               </v-col>
+              <!-- Motivo -->
+              <v-col cols="6">
+                <Select
+                  :model.sync="recoverItemReason"
+                  :rules="rules.reason"
+                  label="Motivo"
+                  :items="itemsReason"
+                />
+              </v-col>
               <!-- Estado de la gestion -->
-              <v-col cols="12" v-if="recoverItem.id">
+              <!-- <v-col cols="12" v-if="recoverItem.id">
                 <Select
                   :model.sync="recoverItemIsActive"
                   :rules="rules.isActive"
                   label="Estado de la gestion"
                   :items="itemsIsActive"
                 />
-              </v-col>
+              </v-col> -->
+              <!-- Estado de la gestion -->
+              <!-- <v-col cols="12" v-if="recoverItem.id">
+                <Select
+                  :model.sync="recoverItemIsActive"
+                  :rules="rules.isActive"
+                  label="Estado de la gestion"
+                  :items="itemsIsActive"
+                />
+              </v-col> -->
+
               <!-- Observacion -->
               <v-col cols="12">
                 <Textarea
@@ -103,6 +122,79 @@
                 <Button label="Enviar" :disabled="!isformValid" type="submit" />
               </v-col>
             </v-row>
+
+            <template v-else>
+              <v-row>
+                <v-col>
+                  <v-row>
+                    <v-col cols="6" class="d-flex justify-center align-center">
+                      <v-img
+                        src="img/inbox_cleanup.svg"
+                        max-width="300px"
+                        max-height="300px"
+                      />
+                    </v-col>
+                    <v-col cols="6">
+                      <!-- Nombre -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Nombre</h3>
+                        <span v-text="recoverItemName" />
+                      </v-col>
+                      <!-- Documento -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Documento</h3>
+                        <span v-text="recoverItemDocument" />
+                      </v-col>
+                      <!-- Contacto 1 -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Telefono 1</h3>
+                        <span v-text="recoverItemNumberOne" />
+                      </v-col>
+                      <!-- Contacto 2 -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Telefono 2</h3>
+                        <span v-text="recoverItemNumberTwo" />
+                      </v-col>
+                      <!-- Segmento -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Segmento</h3>
+                        <span v-text="recoverItemLine" />
+                      </v-col>
+                      <!-- Observacion -->
+                      <v-col cols="12" class="text-center">
+                        <h3 class="primary--text">Observacion</h3>
+                        <span v-text="recoverItemObservation" />
+                      </v-col>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <!-- Division -->
+                <v-col cols="12">
+                  <v-divider></v-divider>
+                </v-col>
+
+                <!-- Estado de la gestion -->
+                <v-col cols="12" class="d-flex justify-center">
+                  <Select
+                    class="mr-5"
+                    :model.sync="recoverItemIsActive"
+                    :rules="rules.isActive"
+                    label="Estado de la gestion"
+                    style="max-width: 300px"
+                    :items="itemsIsActive"
+                  />
+                  <Button
+                    label="Enviar"
+                    :disabled="!isformValid"
+                    type="submit"
+                  />
+                </v-col>
+
+                <!-- <v-col cols="12" class="d-flex justify-end">
+                 
+                </v-col> -->
+              </v-row>
+            </template>
           </v-form>
         </v-hover>
       </v-col>
@@ -146,6 +238,7 @@ export default {
           value: false,
         },
       ],
+      itemsReason: ["CAIDA DE SISTEMA", "CAIDA DE APLICATIVO"],
       payload: {},
       rules: {
         name: [
@@ -167,6 +260,7 @@ export default {
         ],
         services: [(v) => !!v || "El servicio  es requerido"],
         itemsIsActive: [(v) => !!v || "El estado es requerido"],
+        reason: [(v) => !!v || "El motivo es requerido"],
         observation: [
           (v) => !!v || "La observaciòn es requerida",
           (v) =>
